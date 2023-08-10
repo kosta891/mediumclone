@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { ReplaySubject } from 'rxjs';
 import { register } from '../../store/actions';
 import { RegisterRequestInterface } from '../../types/registerRequest';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'mc-register',
@@ -30,7 +31,11 @@ export class RegisterComponent implements OnInit {
   });
 
   private destroy$ = new ReplaySubject<void>(1);
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     console.log('renderovao');
@@ -42,6 +47,10 @@ export class RegisterComponent implements OnInit {
       user: this.registerForm.getRawValue(),
     };
     this.store.dispatch(register({ request }));
+  }
+
+  onNavigateLink(): void {
+    this.router.navigate(['/login']);
   }
 
   ngOnDestroy(): void {
