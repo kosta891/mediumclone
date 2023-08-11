@@ -1,21 +1,28 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { ReplaySubject } from 'rxjs';
-import { register } from '../../store/actions';
+import { Observable, ReplaySubject } from 'rxjs';
+import { authActions } from '../../store/actions';
 import { RegisterRequestInterface } from '../../types/registerRequest';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { selectIsSubmitting } from '../../store/selectors';
+import { AuthState } from '../../types/authState';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { AuthStateFacade } from '../../store/facade';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'mc-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, AsyncPipe, NgIf],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  // providers: []
+  providers: [AuthStateFacade],
 })
 export class RegisterComponent implements OnInit {
+  // isSubmitting$ = this.store.select(selectIsSubmitting);
+  isSubmitting$: Observable<boolean> = this.authStateFacade.isSubmitting$;
   get form() {
     return {
       username: this.registerForm.get('username'),
@@ -31,10 +38,13 @@ export class RegisterComponent implements OnInit {
   });
 
   private destroy$ = new ReplaySubject<void>(1);
+
   constructor(
     private fb: FormBuilder,
     private store: Store,
-    private router: Router
+    private router: Router,
+    private authStateFacade: AuthStateFacade,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -42,11 +52,12 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('mrk', this.registerForm.getRawValue());
+    console.log(this.registerForm.getRawValue());
     const request: RegisterRequestInterface = {
       user: this.registerForm.getRawValue(),
     };
-    this.store.dispatch(register({ request }));
+    this.store.dispatch(authActions.register({ request }));
+    this.authService.register(request).subscribe((data) => console.log(data));
   }
 
   onNavigateLink(): void {
