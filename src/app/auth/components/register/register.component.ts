@@ -1,20 +1,25 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, combineLatest } from 'rxjs';
 import { authActions } from '../../store/actions';
 import { RegisterRequestInterface } from '../../types/registerRequest';
 import { Router } from '@angular/router';
-import { selectIsSubmitting } from '../../store/selectors';
-import { AuthState } from '../../types/authState';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { AuthStateFacade } from '../../store/facade';
-import { AuthService } from '../../services/auth.service';
+
+import { BackendErrors } from 'src/app/shared/types/backendErrors';
+import { BackendErrorMessagesComponent } from 'src/app/shared/components/backend-error-messages/backend-error-messages.component';
 
 @Component({
   selector: 'mc-register',
   standalone: true,
-  imports: [ReactiveFormsModule, AsyncPipe, NgIf],
+  imports: [
+    ReactiveFormsModule,
+    AsyncPipe,
+    NgIf,
+    BackendErrorMessagesComponent,
+  ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,7 +27,20 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   // isSubmitting$ = this.store.select(selectIsSubmitting);
-  isSubmitting$: Observable<boolean> = this.authStateFacade.isSubmitting$;
+  // isSubmitting$: Observable<boolean> = this.authStateFacade.isSubmitting$;
+  // isLoading$: Observable<boolean> = this.authStateFacade.isLoading$;
+  // currentUser$: Observable<CurrentUser | null | undefined> =
+  //   this.authStateFacade.currentUser$;
+  // backendErrors$: Observable<BackendErrors | null> =
+  //   this.authStateFacade.backendErrors$;
+
+  data$ = combineLatest({
+    isSubmitting: this.authStateFacade.isSubmitting$,
+    isLoading: this.authStateFacade.isLoading$,
+    currentUser: this.authStateFacade.currentUser$,
+    backendErrors: this.authStateFacade.backendErrors$,
+  });
+
   get form() {
     return {
       username: this.registerForm.get('username'),
@@ -43,12 +61,11 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private store: Store,
     private router: Router,
-    private authStateFacade: AuthStateFacade,
-    private authService: AuthService
+    private authStateFacade: AuthStateFacade
   ) {}
 
   ngOnInit(): void {
-    console.log('renderovao');
+    console.log(this.data$.subscribe((e) => console.log(e)));
   }
 
   onSubmit(): void {
@@ -57,7 +74,6 @@ export class RegisterComponent implements OnInit {
       user: this.registerForm.getRawValue(),
     };
     this.store.dispatch(authActions.register({ request }));
-    this.authService.register(request).subscribe((data) => console.log(data));
   }
 
   onNavigateLink(): void {
