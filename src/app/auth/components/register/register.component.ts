@@ -1,14 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable, ReplaySubject, combineLatest } from 'rxjs';
+import { ReplaySubject, combineLatest } from 'rxjs';
 import { authActions } from '../../store/actions';
 import { RegisterRequestInterface } from '../../types/registerRequest';
 import { Router } from '@angular/router';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { AuthStateFacade } from '../../store/facade';
-
-import { BackendErrors } from 'src/app/shared/types/backendErrors';
 import { BackendErrorMessagesComponent } from 'src/app/shared/components/backend-error-messages/backend-error-messages.component';
 
 @Component({

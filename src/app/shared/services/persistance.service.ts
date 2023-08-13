@@ -20,5 +20,4 @@ export class PersistanceService {
       return null;
     }
   }
-  constructor() {}
 }
