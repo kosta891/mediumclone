@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthEffects {
   private actions$ = inject(Actions);
+
   register$ = createEffect(() =>
     this.actions$.pipe(
       ofType(authActions.register),
@@ -39,6 +40,40 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(authActions.registerSuccess),
+        tap(() => {
+          this.router.navigate(['/']);
+        })
+      ),
+    { dispatch: false }
+  );
+
+  login$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(authActions.login),
+      switchMap(
+        ({ request }): Observable<Action> =>
+          this.authService.login(request).pipe(
+            map((currentUser: CurrentUser): Action => {
+              this.persistanceService.set('accessToken', currentUser.token);
+              return authActions.loginSuccess({ currentUser });
+            }),
+            catchError(
+              (errorResponse: HttpErrorResponse): Observable<Action> =>
+                of(
+                  authActions.loginFailure({
+                    errors: errorResponse.error.errors,
+                  })
+                )
+            )
+          )
+      )
+    )
+  );
+
+  redirectAfterLogin$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(authActions.loginSuccess),
         tap(() => {
           this.router.navigate(['/']);
         })

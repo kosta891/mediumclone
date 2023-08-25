@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ReplaySubject, combineLatest } from 'rxjs';
 import { authActions } from '../../store/actions';
-import { RegisterRequestInterface } from '../../types/registerRequest';
+import { RegisterRequest } from '../../types/registerRequest';
 import { Router } from '@angular/router';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { AuthStateFacade } from '../../store/facade';
@@ -23,7 +23,7 @@ import { BackendErrorMessagesComponent } from 'src/app/shared/components/backend
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [AuthStateFacade],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnDestroy {
   // isSubmitting$ = this.store.select(selectIsSubmitting);
   // isSubmitting$: Observable<boolean> = this.authStateFacade.isSubmitting$;
   // isLoading$: Observable<boolean> = this.authStateFacade.isLoading$;
@@ -62,13 +62,9 @@ export class RegisterComponent implements OnInit {
     private authStateFacade: AuthStateFacade
   ) {}
 
-  ngOnInit(): void {
-    console.log(this.data$.subscribe((e) => console.log(e)));
-  }
-
   onSubmit(): void {
     console.log(this.registerForm.getRawValue());
-    const request: RegisterRequestInterface = {
+    const request: RegisterRequest = {
       user: this.registerForm.getRawValue(),
     };
     this.store.dispatch(authActions.register({ request }));

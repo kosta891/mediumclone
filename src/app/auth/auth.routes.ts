@@ -4,12 +4,20 @@ import { LoginComponent } from './components/login/login.component';
 
 export const registerRoutes: Route[] = [
   {
-    path: 'register',
+    path: '',
     component: RegisterComponent,
     pathMatch: 'full',
   },
+  // {
+  //   path: 'login',
+  //   component: LoginComponent,
+  // },
+];
+
+export const loginRoutes: Route[] = [
   {
-    path: 'login',
+    path: '',
     component: LoginComponent,
+    pathMatch: 'full',
   },
 ];
