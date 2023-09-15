@@ -25,4 +25,9 @@ export class AuthService {
     const url = environment.apiUrl + '/users/login';
     return this.http.post<AuthResponse>(url, data).pipe(map((res) => res.user));
   }
+
+  getCurrentUser(): Observable<CurrentUser> {
+    const url = environment.apiUrl + '/user';
+    return this.http.get<AuthResponse>(url).pipe(map((res) => res.user));
+  }
 }

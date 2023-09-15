@@ -81,6 +81,24 @@ export class AuthEffects {
     { dispatch: false }
   );
 
+  getCurrentUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(authActions.getCurrentUser),
+      switchMap((): Observable<Action> => {
+        const token = this.persistanceService.get('accessToken');
+        if (!token) {
+          return of(authActions.getCurrentUserFailure());
+        }
+        return this.authService.getCurrentUser().pipe(
+          map((currentUser: CurrentUser): Action => {
+            return authActions.getCurrentUserSuccess({ currentUser });
+          }),
+          catchError(() => of(authActions.getCurrentUserFailure()))
+        );
+      })
+    )
+  );
+
   constructor(
     private authService: AuthService,
     private persistanceService: PersistanceService,
