@@ -10,8 +10,13 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
 import { AuthEffects } from './auth/store/effects';
+import { FeedEffects } from './shared/components/feed/store/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { authInterceptor } from './shared/services/auth-interceptor';
+import {
+  feedFeatureKey,
+  feedReducer,
+} from './shared/components/feed/store/reducers';
 // drugi nacin renderovanje ispod
 // import * as authEffects from './auth/store/effects'
 
@@ -24,7 +29,8 @@ export const appConfig: ApplicationConfig = {
     }),
     provideRouterStore(),
     provideState(authFeatureKey, authReducer),
-    provideEffects(AuthEffects),
+    provideState(feedFeatureKey, feedReducer),
+    provideEffects(AuthEffects, FeedEffects),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
