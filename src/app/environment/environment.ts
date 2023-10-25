@@ -1,6 +1,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://api.realworld.io/api',
+  limit: 20,
   // apiUrl: 'https://178.149.164.181:7019/api',
   //   fileServerUrl: 'https://10.5.20.41:5601',
   //   recaptchaKey: '6LdS6zohAAAAAGlY6rz0apo3kGCZkpcHxahQR_dm',

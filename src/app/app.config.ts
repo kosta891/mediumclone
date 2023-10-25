@@ -17,6 +17,11 @@ import {
   feedFeatureKey,
   feedReducer,
 } from './shared/components/feed/store/reducers';
+import { PopularTagsEffects } from './shared/components/popular-tags/store/effects';
+import {
+  popularTagsFeatureKey,
+  popularTagsReducer,
+} from './shared/components/popular-tags/store/reducers';
 // drugi nacin renderovanje ispod
 // import * as authEffects from './auth/store/effects'
 
@@ -30,7 +35,8 @@ export const appConfig: ApplicationConfig = {
     provideRouterStore(),
     provideState(authFeatureKey, authReducer),
     provideState(feedFeatureKey, feedReducer),
-    provideEffects(AuthEffects, FeedEffects),
+    provideState(popularTagsFeatureKey, popularTagsReducer),
+    provideEffects(AuthEffects, FeedEffects, PopularTagsEffects),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
