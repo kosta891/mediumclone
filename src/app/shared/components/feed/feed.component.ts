@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { NgIf, AsyncPipe, NgFor } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { feedActions } from './store/actions';
@@ -27,7 +33,7 @@ import { TagListComponent } from '../tag-list/tag-list.component';
   ],
   templateUrl: './feed.component.html',
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, OnChanges {
   @Input() apiUrl = '';
 
   data$ = combineLatest({
@@ -51,6 +57,16 @@ export class FeedComponent implements OnInit {
       this.currentPage = Number(params['page'] || '1');
       this.fetchFeed();
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const isApiUrlChanged =
+      !changes['apiUrl'].firstChange &&
+      changes['apiUrl'].currentValue !== changes['apiUrl'].previousValue;
+
+    if (isApiUrlChanged) {
+      this.fetchFeed();
+    }
   }
 
   fetchFeed(): void {

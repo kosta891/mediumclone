@@ -5,7 +5,7 @@ import { FeedComponent } from 'src/app/shared/components/feed/feed.component';
 import { PopularTagsComponent } from 'src/app/shared/components/popular-tags/popular-tags.component';
 
 @Component({
-  selector: 'mc-global-feed',
+  selector: 'mc-your-feed',
   standalone: true,
   imports: [
     FeedComponent,
@@ -13,8 +13,8 @@ import { PopularTagsComponent } from 'src/app/shared/components/popular-tags/pop
     PopularTagsComponent,
     FeedTogglerComponent,
   ],
-  templateUrl: './global-feed.component.html',
+  templateUrl: './your-feed.component.html',
 })
-export class GlobalFeedComponent {
-  apiUrl = '/articles';
+export class YourFeedComponent {
+  apiUrl = '/articles/feed';
 }
