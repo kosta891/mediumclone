@@ -19,7 +19,6 @@ import { BackendErrorMessagesComponent } from 'src/app/shared/components/backend
     BackendErrorMessagesComponent,
   ],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [AuthStateFacade],
 })

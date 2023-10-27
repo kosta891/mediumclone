@@ -55,6 +55,7 @@ export class ArticleComponent implements OnInit {
     article: this.store.select(selectArticleData),
     isAuthor: this.isAuthor$,
   });
+
   constructor(
     private store: Store,
     private route: ActivatedRoute,
@@ -63,5 +64,9 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(articleActions.getArticle({ slug: this.slug }));
+  }
+
+  deleteArticle(): void {
+    this.store.dispatch(articleActions.deleteArticle({ slug: this.slug }));
   }
 }

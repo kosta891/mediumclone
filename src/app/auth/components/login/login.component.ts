@@ -20,7 +20,6 @@ import { LoginRequest } from '../../types/loginRegister';
     BackendErrorMessagesComponent,
   ],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [AuthStateFacade],
 })
@@ -54,7 +53,6 @@ export class LoginComponent implements OnDestroy {
   ) {}
 
   onSubmit(): void {
-    console.log(this.loginForm.getRawValue());
     const request: LoginRequest = {
       user: this.loginForm.getRawValue(),
     };
