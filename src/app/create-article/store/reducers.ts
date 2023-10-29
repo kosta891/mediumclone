@@ -1,7 +1,7 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 
 import { routerNavigatedAction } from '@ngrx/router-store';
-import { CreateArticleState } from '../types/createArticleState';
+import { CreateArticleState } from '../types/create-article-state';
 import { createArticleActions } from './actions';
 
 const initialState: CreateArticleState = {
