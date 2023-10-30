@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RegisterRequest } from '../types/registerRequest';
-import { CurrentUser } from 'src/app/shared/types/currentUser';
+import { CurrentUser } from 'src/app/shared/types/current-user';
 import { Observable, map } from 'rxjs';
 import { AuthResponse } from '../types/authResponse';
 import { environment } from 'src/app/environment/environment';
-import { LoginRequest } from '../types/loginRegister';
+import { LoginRequest } from '../types/loginRequest';
+import { CurrentUserRequest } from 'src/app/shared/types/current-user-request';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -29,5 +30,14 @@ export class AuthService {
   getCurrentUser(): Observable<CurrentUser> {
     const url = environment.apiUrl + '/user';
     return this.http.get<AuthResponse>(url).pipe(map((res) => res.user));
+  }
+
+  updateCurrentUser(
+    curentUserRequest: CurrentUserRequest
+  ): Observable<CurrentUser> {
+    const url = environment.apiUrl + '/user';
+    return this.http
+      .put<AuthResponse>(url, curentUserRequest)
+      .pipe(map(this.getUser));
   }
 }

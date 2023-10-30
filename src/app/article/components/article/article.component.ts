@@ -8,7 +8,7 @@ import {
   selectError,
   selectIsLoading,
 } from '../../store/reducers';
-import { CurrentUser } from 'src/app/shared/types/currentUser';
+import { CurrentUser } from 'src/app/shared/types/current-user';
 import { AuthStateFacade } from 'src/app/auth/store/facade';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { LoadingComponent } from 'src/app/shared/components/loading/loading.component';

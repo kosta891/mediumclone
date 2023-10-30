@@ -45,4 +45,9 @@ export const appRoutes: Route[] = [
         (m) => m.routes
       ),
   },
+  {
+    path: 'settings',
+    loadChildren: () =>
+      import('src/app/settings/settings.routes').then((m) => m.routes),
+  },
 ];

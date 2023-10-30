@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { UpdateArticleService } from './update-article.service';
 
-describe('CreateArticleService', () => {
+describe('UpdateArticleService', () => {
   let service: UpdateArticleService;
 
   beforeEach(() => {

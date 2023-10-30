@@ -1,14 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
 import { ReplaySubject, combineLatest } from 'rxjs';
-import { authActions } from '../../store/actions';
 
 import { Router } from '@angular/router';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { AuthStateFacade } from '../../store/facade';
 import { BackendErrorMessagesComponent } from 'src/app/shared/components/backend-error-messages/backend-error-messages.component';
-import { LoginRequest } from '../../types/loginRegister';
+import { LoginRequest } from '../../types/loginRequest';
 
 @Component({
   selector: 'mc-login',
@@ -47,7 +45,6 @@ export class LoginComponent implements OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private store: Store,
     private router: Router,
     private authStateFacade: AuthStateFacade
   ) {}
@@ -56,7 +53,7 @@ export class LoginComponent implements OnDestroy {
     const request: LoginRequest = {
       user: this.loginForm.getRawValue(),
     };
-    this.store.dispatch(authActions.login({ request }));
+    this.authStateFacade.login(request);
   }
 
   onNavigateLink(): void {

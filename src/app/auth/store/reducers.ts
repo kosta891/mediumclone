@@ -58,6 +58,16 @@ const authFeature = createFeature({
       isLoading: false,
       currentUser: null,
     })),
+    on(authActions.updateCurrentUserSuccess, (state, action) => ({
+      ...state,
+      isLoading: false,
+      currentUser: action.currentUser,
+    })),
+    on(authActions.logout, (state) => ({
+      ...state,
+      ...initialState,
+      currentUser: null,
+    })),
 
     // router cleaning state when changing url location
     on(routerNavigatedAction, (state) => ({ ...state, validationErrors: null }))

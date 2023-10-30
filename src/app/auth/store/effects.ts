@@ -4,7 +4,7 @@ import { authActions } from './actions';
 import { switchMap, catchError, of, Observable, map, tap } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { AuthService } from '../services/auth.service';
-import { CurrentUser } from 'src/app/shared/types/currentUser';
+import { CurrentUser } from 'src/app/shared/types/current-user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PersistanceService } from 'src/app/shared/services/persistance.service';
 import { Router } from '@angular/router';
@@ -99,6 +99,39 @@ export class AuthEffects {
     )
   );
 
+  updateCurrentUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(authActions.updateCurrentUser),
+      switchMap(({ currentUserRequest }): Observable<Action> => {
+        return this.authService.updateCurrentUser(currentUserRequest).pipe(
+          map((currentUser: CurrentUser): Action => {
+            return authActions.updateCurrentUserSuccess({ currentUser });
+          }),
+          catchError((errorResponse: HttpErrorResponse) =>
+            of(
+              authActions.updateCurrentUserFailure({
+                errors: errorResponse.error.errors,
+              })
+            )
+          )
+        );
+      })
+    )
+  );
+
+  logout$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(authActions.logout),
+        tap(() => {
+          this.persistanceService.set('accessToken', '');
+          this.router.navigate(['/']);
+        })
+      ),
+    {
+      dispatch: false,
+    }
+  );
   constructor(
     private authService: AuthService,
     private persistanceService: PersistanceService,
