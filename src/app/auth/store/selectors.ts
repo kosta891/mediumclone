@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { AuthState } from '../types/authState';
+import { AuthState } from '../types/auth-state';
 import { BackendErrors } from 'src/app/shared/types/backendErrors';
 import { CurrentUser } from 'src/app/shared/types/current-user';
 

@@ -1,5 +1,5 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { AuthState } from '../types/authState';
+import { AuthState } from '../types/auth-state';
 import { authActions } from './actions';
 import { routerNavigatedAction } from '@ngrx/router-store';
 

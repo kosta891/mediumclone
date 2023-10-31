@@ -3,7 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ReplaySubject, combineLatest } from 'rxjs';
 import { authActions } from '../../store/actions';
-import { RegisterRequest } from '../../types/registerRequest';
+import { RegisterRequest } from '../../types/register-request';
 import { Router } from '@angular/router';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { AuthStateFacade } from '../../store/facade';

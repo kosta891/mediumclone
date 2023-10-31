@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { AuthStateFacade } from '../../store/facade';
 import { BackendErrorMessagesComponent } from 'src/app/shared/components/backend-error-messages/backend-error-messages.component';
-import { LoginRequest } from '../../types/loginRequest';
+import { LoginRequest } from '../../types/login-request';
 
 @Component({
   selector: 'mc-login',

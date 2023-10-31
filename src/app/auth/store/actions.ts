@@ -1,8 +1,8 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { RegisterRequest } from '../types/registerRequest';
+import { RegisterRequest } from '../types/register-request';
 import { CurrentUser } from 'src/app/shared/types/current-user';
 import { BackendErrors } from 'src/app/shared/types/backendErrors';
-import { LoginRequest } from '../types/loginRequest';
+import { LoginRequest } from '../types/login-request';
 import { CurrentUserRequest } from 'src/app/shared/types/current-user-request';
 
 export const authActions = createActionGroup({
@@ -27,18 +27,3 @@ export const authActions = createActionGroup({
     Logout: emptyProps(),
   },
 });
-
-// export const register = createAction(
-//   '[Auth] Register',
-//   props<{ request: RegisterRequestInterface }>()
-// );
-
-// export const registerSuccess = createAction(
-//   '[Auth] Register Success',
-//   props<{ request: RegisterRequestInterface }>()
-// );
-
-// export const registerFailure = createAction(
-//   '[Auth] Register Failure',
-//   props<{ request: RegisterRequestInterface }>()
-// );
