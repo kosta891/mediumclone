@@ -1,19 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { articleActions } from '../../store/actions';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { combineLatest, filter, map } from 'rxjs';
-import {
-  selectArticleData,
-  selectError,
-  selectIsLoading,
-} from '../../store/reducers';
 import { CurrentUser } from 'src/app/shared/types/current-user';
 import { AuthStateFacade } from 'src/app/auth/store/facade';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { LoadingComponent } from 'src/app/shared/components/loading/loading.component';
 import { ErrorMessageComponent } from 'src/app/shared/components/error-message/error-message.component';
 import { TagListComponent } from 'src/app/shared/components/tag-list/tag-list.component';
+import { ArticleStateFacade } from '../../store/facade';
 
 @Component({
   selector: 'mc-article',
@@ -27,13 +21,12 @@ import { TagListComponent } from 'src/app/shared/components/tag-list/tag-list.co
     TagListComponent,
   ],
   templateUrl: './article.component.html',
-  providers: [AuthStateFacade],
 })
 export class ArticleComponent implements OnInit {
   slug = this.route.snapshot.paramMap.get('slug') ?? '';
 
   isAuthor$ = combineLatest({
-    article: this.store.select(selectArticleData),
+    article: this.articleStateFacade.article$,
     currentUser: this.authStateFacade.currentUser$.pipe(
       filter(
         (currentUser): currentUser is CurrentUser | null =>
@@ -50,23 +43,23 @@ export class ArticleComponent implements OnInit {
   );
 
   data$ = combineLatest({
-    isLoading: this.store.select(selectIsLoading),
-    error: this.store.select(selectError),
-    article: this.store.select(selectArticleData),
+    isLoading: this.articleStateFacade.isLoading$,
+    error: this.articleStateFacade.error$,
+    article: this.articleStateFacade.article$,
     isAuthor: this.isAuthor$,
   });
 
   constructor(
-    private store: Store,
     private route: ActivatedRoute,
-    private authStateFacade: AuthStateFacade
+    private authStateFacade: AuthStateFacade,
+    private articleStateFacade: ArticleStateFacade
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(articleActions.getArticle({ slug: this.slug }));
+    this.articleStateFacade.getArticle(this.slug);
   }
 
   deleteArticle(): void {
-    this.store.dispatch(articleActions.deleteArticle({ slug: this.slug }));
+    this.articleStateFacade.deleteArticle(this.slug);
   }
 }

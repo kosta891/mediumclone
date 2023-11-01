@@ -6,10 +6,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { NgIf, AsyncPipe, NgFor } from '@angular/common';
-import { Store } from '@ngrx/store';
-import { feedActions } from './store/actions';
 import { combineLatest } from 'rxjs';
-import { selectError, selectFeedData, selectIsLoading } from './store/reducers';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { LoadingComponent } from '../loading/loading.component';
@@ -18,6 +15,7 @@ import { PaginationComponent } from '../../pagination/pagination.component';
 import queryString from 'query-string';
 import { TagListComponent } from '../tag-list/tag-list.component';
 import { AddToFavoritesComponent } from '../add-to-favorites/add-to-favorites.component';
+import { FeedStateFacade } from './store/facade';
 
 @Component({
   selector: 'mc-feed',
@@ -34,14 +32,15 @@ import { AddToFavoritesComponent } from '../add-to-favorites/add-to-favorites.co
     AddToFavoritesComponent,
   ],
   templateUrl: './feed.component.html',
+  providers: [FeedStateFacade],
 })
 export class FeedComponent implements OnInit, OnChanges {
   @Input() apiUrl = '';
 
   data$ = combineLatest({
-    isLoading: this.store.select(selectIsLoading),
-    error: this.store.select(selectError),
-    feed: this.store.select(selectFeedData),
+    isLoading: this.feedStateFacade.isLoading$,
+    error: this.feedStateFacade.errors$,
+    feed: this.feedStateFacade.feed$,
   });
 
   limit = environment.limit;
@@ -49,7 +48,7 @@ export class FeedComponent implements OnInit, OnChanges {
   currentPage = 0;
 
   constructor(
-    private store: Store,
+    private feedStateFacade: FeedStateFacade,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -80,6 +79,6 @@ export class FeedComponent implements OnInit, OnChanges {
       ...parsedUrl.query,
     });
     const apiUrlWithParams = `${parsedUrl.url}?${stringifiedParams}`;
-    this.store.dispatch(feedActions.getFeed({ url: apiUrlWithParams }));
+    this.feedStateFacade.getFeed(apiUrlWithParams);
   }
 }

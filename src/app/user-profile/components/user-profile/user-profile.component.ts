@@ -6,26 +6,19 @@ import {
   RouterLink,
   RouterLinkActive,
 } from '@angular/router';
-import { Store, select } from '@ngrx/store';
-import { userProfileActions } from '../../store/actions';
 import { combineLatest, filter, map } from 'rxjs';
-import {
-  selectError,
-  selectIsLoading,
-  selectUserProfileData,
-} from '../../store/reducers';
 import { AuthStateFacade } from 'src/app/auth/store/facade';
 import { CurrentUser } from 'src/app/shared/types/current-user';
 import { UserProfileInterface } from '../../types/user-profile.interface';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { FeedComponent } from 'src/app/shared/components/feed/feed.component';
+import { UserProfileStateFacade } from '../../store/facade';
 
 @Component({
   selector: 'mc-user-profile',
   standalone: true,
   imports: [NgIf, AsyncPipe, RouterLink, RouterLinkActive, FeedComponent],
   templateUrl: './user-profile.component.html',
-  providers: [AuthStateFacade],
 })
 export class UserProfileComponent implements OnInit {
   slug: string = '';
@@ -37,8 +30,7 @@ export class UserProfileComponent implements OnInit {
           currentUser !== undefined
       )
     ),
-    userProfile: this.store.pipe(
-      select(selectUserProfileData),
+    userProfile: this.userProfileStateFacade.userProfile$.pipe(
       filter((userProfile): userProfile is UserProfileInterface =>
         Boolean(userProfile)
       )
@@ -50,16 +42,16 @@ export class UserProfileComponent implements OnInit {
   );
 
   data$ = combineLatest({
-    isLoading: this.store.select(selectIsLoading),
-    errors: this.store.select(selectError),
-    userProfile: this.store.select(selectUserProfileData),
+    isLoading: this.userProfileStateFacade.isLoading$,
+    errors: this.userProfileStateFacade.errors$,
+    userProfile: this.userProfileStateFacade.userProfile$,
     isCurrentUserProfile: this.isCurrentUserProfile$,
   });
 
   constructor(
     private route: ActivatedRoute,
     private authStateFacade: AuthStateFacade,
-    private store: Store,
+    private userProfileStateFacade: UserProfileStateFacade,
     private router: Router
   ) {}
 
@@ -71,7 +63,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   fetchUserProfile() {
-    this.store.dispatch(userProfileActions.getUserProfile({ slug: this.slug }));
+    this.userProfileStateFacade.getUserProfile(this.slug);
   }
 
   getApiUrl(): string {

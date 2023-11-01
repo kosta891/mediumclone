@@ -138,22 +138,3 @@ export class AuthEffects {
     private router: Router
   ) {}
 }
-
-// export const registerEffect = createEffect(
-//   (actions$ = inject(Actions), authService = inject(AuthService)) =>
-//     actions$.pipe(
-//       ofType(authActions.register),
-//       switchMap(
-//         ({ request }): Observable<Action> =>
-//           authService.register(request).pipe(
-//             map(
-//               (currentUser: CurrentUser): Action =>
-//                 authActions.registerSuccess({ currentUser })
-//             ),
-//             catchError(
-//               (error): Observable<Action> => of(authActions.registerFailure())
-//             )
-//           )
-//       )
-//     )
-// );

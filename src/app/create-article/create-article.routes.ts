@@ -8,6 +8,7 @@ import {
   createArticleReducer,
 } from './store/reducers';
 import { provideState } from '@ngrx/store';
+import { CreateArticleStateFacade } from './store/facade';
 
 export const routes: Route[] = [
   {
@@ -15,6 +16,7 @@ export const routes: Route[] = [
     component: CreateArticleComponent,
     providers: [
       CreateArticleService,
+      CreateArticleStateFacade,
       provideEffects(CreateArticleEffects),
       provideState(createArticleFeatureKey, createArticleReducer),
     ],

@@ -17,7 +17,6 @@ export class AuthService {
   }
 
   register(data: RegisterRequest): Observable<CurrentUser> {
-    console.log(data);
     const url = environment.apiUrl + '/users';
     return this.http.post<AuthResponse>(url, data).pipe(map((res) => res.user));
   }

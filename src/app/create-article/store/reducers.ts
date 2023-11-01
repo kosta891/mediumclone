@@ -10,7 +10,7 @@ const initialState: CreateArticleState = {
 };
 
 const createArticleFeature = createFeature({
-  name: 'create article',
+  name: 'createArticle',
   reducer: createReducer(
     initialState,
     on(createArticleActions.createArticle, (state) => ({
@@ -29,9 +29,5 @@ const createArticleFeature = createFeature({
   ),
 });
 
-export const {
-  name: createArticleFeatureKey,
-  reducer: createArticleReducer,
-  selectIsSubmitting,
-  selectValidationErrors,
-} = createArticleFeature;
+export const { name: createArticleFeatureKey, reducer: createArticleReducer } =
+  createArticleFeature;

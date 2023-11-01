@@ -1,7 +1,7 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { articleActions } from './actions';
 import { routerNavigatedAction } from '@ngrx/router-store';
-import { ArticleState } from '../types/articleState';
+import { ArticleState } from '../types/article-state';
 
 const initialState: ArticleState = {
   isLoading: false,
@@ -30,10 +30,5 @@ const articleFeature = createFeature({
   ),
 });
 
-export const {
-  name: articleFeatureKey,
-  reducer: articleReducer,
-  selectIsLoading,
-  selectError,
-  selectData: selectArticleData,
-} = articleFeature;
+export const { name: articleFeatureKey, reducer: articleReducer } =
+  articleFeature;
