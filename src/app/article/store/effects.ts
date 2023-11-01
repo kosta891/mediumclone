@@ -3,9 +3,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { articleActions } from './actions';
 import { Observable, catchError, map, of, switchMap, tap } from 'rxjs';
 import { Action } from '@ngrx/store';
-import { ArticleService as SharedArticleService } from 'src/app/shared/services/article.service';
+import { ArticleService as SharedArticleService } from '@shared/services/article.service';
 import { ArticleService } from '../services/article.service';
-import { ArticleInterface } from 'src/app/shared/types/article';
+import { ArticleInterface } from '@shared/types/article';
 import { Router } from '@angular/router';
 
 @Injectable()

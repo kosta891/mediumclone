@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 import { AuthState } from '../types/auth-state';
-import { BackendErrors } from 'src/app/shared/types/backendErrors';
-import { CurrentUser } from 'src/app/shared/types/current-user';
+import { BackendErrors } from '@shared/types/backendErrors';
+import { CurrentUser } from '@shared/types/current-user';
 
 export const selectFeature = (state: { auth: AuthState }) => state.auth;
 

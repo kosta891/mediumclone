@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
-import { BackendErrors } from 'src/app/shared/types/backendErrors';
+import { BackendErrors } from '@shared/types/backendErrors';
 import { UpdateArticleState } from '../types/update-article-state';
-import { ArticleInterface } from 'src/app/shared/types/article';
+import { ArticleInterface } from '@shared/types/article';
 
 export const selectFeature = (state: { updateArticle: UpdateArticleState }) =>
   state.updateArticle;

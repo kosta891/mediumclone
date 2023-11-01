@@ -8,10 +8,10 @@ import {
 } from '@angular/router';
 import { combineLatest, filter, map } from 'rxjs';
 import { AuthStateFacade } from 'src/app/auth/store/facade';
-import { CurrentUser } from 'src/app/shared/types/current-user';
+import { CurrentUser } from '@shared/types/current-user';
 import { UserProfileInterface } from '../../types/user-profile.interface';
 import { AsyncPipe, NgIf } from '@angular/common';
-import { FeedComponent } from 'src/app/shared/components/feed/feed.component';
+import { FeedComponent } from '@shared/components/feed/feed.component';
 import { UserProfileStateFacade } from '../../store/facade';
 
 @Component({

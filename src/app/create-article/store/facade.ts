@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as Selectors from './selectors';
-import { BackendErrors } from 'src/app/shared/types/backendErrors';
+import { BackendErrors } from '@shared/types/backendErrors';
 import { CreateArticleState } from '../types/create-article-state';
 import { createArticleActions } from './actions';
-import { ArticleRequest } from 'src/app/shared/types/article-request';
+import { ArticleRequest } from '@shared/types/article-request';
 
 @Injectable()
 export class CreateArticleStateFacade {

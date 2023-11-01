@@ -1,5 +1,5 @@
-import { ArticleInterface } from 'src/app/shared/types/article';
-import { BackendErrors } from 'src/app/shared/types/backendErrors';
+import { ArticleInterface } from '@shared/types/article';
+import { BackendErrors } from '@shared/types/backendErrors';
 
 export interface UpdateArticleState {
   article: ArticleInterface | null;

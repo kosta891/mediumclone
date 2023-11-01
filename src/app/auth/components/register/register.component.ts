@@ -5,7 +5,7 @@ import { RegisterRequest } from '../../types/register-request';
 import { Router } from '@angular/router';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { AuthStateFacade } from '../../store/facade';
-import { BackendErrorMessagesComponent } from 'src/app/shared/components/backend-error-messages/backend-error-messages.component';
+import { BackendErrorMessagesComponent } from '@shared/components/backend-error-messages/backend-error-messages.component';
 
 @Component({
   selector: 'mc-register',

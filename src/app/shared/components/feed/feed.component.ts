@@ -10,7 +10,7 @@ import { combineLatest } from 'rxjs';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { LoadingComponent } from '../loading/loading.component';
-import { environment } from 'src/app/environment/environment';
+import { environment } from '@environment/environment';
 import { PaginationComponent } from '../../pagination/pagination.component';
 import queryString from 'query-string';
 import { TagListComponent } from '../tag-list/tag-list.component';

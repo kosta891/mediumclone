@@ -3,9 +3,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ReplaySubject, combineLatest, filter, takeUntil } from 'rxjs';
 import { AuthStateFacade } from 'src/app/auth/store/facade';
-import { BackendErrorMessagesComponent } from 'src/app/shared/components/backend-error-messages/backend-error-messages.component';
-import { CurrentUser } from 'src/app/shared/types/current-user';
-import { CurrentUserRequest } from 'src/app/shared/types/current-user-request';
+import { BackendErrorMessagesComponent } from '@shared/components/backend-error-messages/backend-error-messages.component';
+import { CurrentUser } from '@shared/types/current-user';
+import { CurrentUserRequest } from '@shared/types/current-user-request';
 
 @Component({
   selector: 'mc-settings',

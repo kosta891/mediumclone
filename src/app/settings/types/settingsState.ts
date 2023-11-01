@@ -1,4 +1,4 @@
-import { BackendErrors } from 'src/app/shared/types/backendErrors';
+import { BackendErrors } from '@shared/types/backendErrors';
 
 export interface SettingsState {
   isSubmitting: boolean;

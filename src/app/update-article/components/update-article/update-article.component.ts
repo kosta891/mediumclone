@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleFormComponent } from 'src/app/shared/components/article-form/article-form.component';
-import { ArticleFormValues } from 'src/app/shared/components/article-form/types/article-form-values';
+import { ArticleFormComponent } from '@shared/components/article-form/article-form.component';
+import { ArticleFormValues } from '@shared/components/article-form/types/article-form-values';
 import { Observable, combineLatest, filter, map } from 'rxjs';
-import { ArticleRequest } from 'src/app/shared/types/article-request';
+import { ArticleRequest } from '@shared/types/article-request';
 import { AsyncPipe, NgIf } from '@angular/common';
-import { LoadingComponent } from 'src/app/shared/components/loading/loading.component';
+import { LoadingComponent } from '@shared/components/loading/loading.component';
 import { ActivatedRoute } from '@angular/router';
-import { ArticleInterface } from 'src/app/shared/types/article';
+import { ArticleInterface } from '@shared/types/article';
 import { UpdateArticleStateFacade } from '../../store/facade';
 
 @Component({

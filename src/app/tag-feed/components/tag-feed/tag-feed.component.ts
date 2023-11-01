@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { BannerComponent } from 'src/app/shared/components/banner/banner.component';
-import { FeedTogglerComponent } from 'src/app/shared/components/feed-toggler/feed-toggler.component';
-import { FeedComponent } from 'src/app/shared/components/feed/feed.component';
-import { PopularTagsComponent } from 'src/app/shared/components/popular-tags/popular-tags.component';
+import { BannerComponent } from '@shared/components/banner/banner.component';
+import { FeedTogglerComponent } from '@shared/components/feed-toggler/feed-toggler.component';
+import { FeedComponent } from '@shared/components/feed/feed.component';
+import { PopularTagsComponent } from '@shared/components/popular-tags/popular-tags.component';
 
 @Component({
   selector: 'mc-tag-feed',

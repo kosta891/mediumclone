@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { combineLatest, filter, map } from 'rxjs';
-import { CurrentUser } from 'src/app/shared/types/current-user';
+import { CurrentUser } from '@shared/types/current-user';
 import { AuthStateFacade } from 'src/app/auth/store/facade';
 import { AsyncPipe, NgIf } from '@angular/common';
-import { LoadingComponent } from 'src/app/shared/components/loading/loading.component';
-import { ErrorMessageComponent } from 'src/app/shared/components/error-message/error-message.component';
-import { TagListComponent } from 'src/app/shared/components/tag-list/tag-list.component';
+import { LoadingComponent } from '@shared/components/loading/loading.component';
+import { ErrorMessageComponent } from '@shared/components/error-message/error-message.component';
+import { TagListComponent } from '@shared/components/tag-list/tag-list.component';
 import { ArticleStateFacade } from '../../store/facade';
 
 @Component({

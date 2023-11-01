@@ -4,9 +4,9 @@ import { authActions } from './actions';
 import { switchMap, catchError, of, Observable, map, tap } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { AuthService } from '../services/auth.service';
-import { CurrentUser } from 'src/app/shared/types/current-user';
+import { CurrentUser } from '@shared/types/current-user';
 import { HttpErrorResponse } from '@angular/common/http';
-import { PersistanceService } from 'src/app/shared/services/persistance.service';
+import { PersistanceService } from '@shared/services/persistance.service';
 import { Router } from '@angular/router';
 
 @Injectable()

@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Observable, catchError, map, of, switchMap } from 'rxjs';
 import { Action } from '@ngrx/store';
-import { ArticleInterface } from 'src/app/shared/types/article';
+import { ArticleInterface } from '@shared/types/article';
 import { AddToFavoritesService } from '../services/add-to-favorites.service';
 import { addToFavoritesActions } from './action';
 
