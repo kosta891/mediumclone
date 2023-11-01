@@ -30,10 +30,4 @@ const feedFeature = createFeature({
   ),
 });
 
-export const {
-  name: feedFeatureKey,
-  reducer: feedReducer,
-  selectIsLoading,
-  selectError,
-  selectData: selectFeedData,
-} = feedFeature;
+export const { name: feedFeatureKey, reducer: feedReducer } = feedFeature;

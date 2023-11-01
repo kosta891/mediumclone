@@ -1,17 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { popularTagsActions } from './store/action';
 import { combineLatest } from 'rxjs';
-import {
-  selectError,
-  selectIsLoading,
-  selectPopularTagsData,
-} from './store/reducers';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { LoadingComponent } from '../loading/loading.component';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { TagListComponent } from '../tag-list/tag-list.component';
 import { RouterLink } from '@angular/router';
+import { PopularTagsStateFacade } from './store/facade';
 
 @Component({
   selector: 'mc-popular-tags',
@@ -26,17 +20,18 @@ import { RouterLink } from '@angular/router';
     RouterLink,
   ],
   templateUrl: './popular-tags.component.html',
+  providers: [PopularTagsStateFacade],
 })
 export class PopularTagsComponent implements OnInit {
   data$ = combineLatest({
-    popularTags: this.store.select(selectPopularTagsData),
-    isLoading: this.store.select(selectIsLoading),
-    error: this.store.select(selectError),
+    popularTags: this.popularTagsStateFacade.popularTags$,
+    isLoading: this.popularTagsStateFacade.isLoading$,
+    error: this.popularTagsStateFacade.errors$,
   });
 
-  constructor(private store: Store) {}
+  constructor(private popularTagsStateFacade: PopularTagsStateFacade) {}
 
   ngOnInit(): void {
-    this.store.dispatch(popularTagsActions.getPopularTags());
+    this.popularTagsStateFacade.getPopularTags();
   }
 }

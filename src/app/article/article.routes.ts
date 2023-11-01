@@ -5,6 +5,8 @@ import { ArticleEffects } from './store/effects';
 import { provideState } from '@ngrx/store';
 import { articleFeatureKey, articleReducer } from './store/reducers';
 import { ArticleService } from './services/article.service';
+import { ArticleStateFacade } from './store/facade';
+import { AuthStateFacade } from '../auth/store/facade';
 
 export const routes: Route[] = [
   {
@@ -14,6 +16,8 @@ export const routes: Route[] = [
       provideEffects(ArticleEffects),
       provideState(articleFeatureKey, articleReducer),
       ArticleService,
+      AuthStateFacade,
+      ArticleStateFacade,
     ],
   },
 ];

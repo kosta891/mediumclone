@@ -12,7 +12,7 @@ const settingsFeature = createFeature({
   name: 'settings',
   reducer: createReducer(
     initialState,
-    on(authActions.updateCurrentUser, (state, action) => ({
+    on(authActions.updateCurrentUser, (state) => ({
       ...state,
       isSubmitting: true,
     })),

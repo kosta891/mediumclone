@@ -1,6 +1,6 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { popularTagsActions } from './action';
-import { PopularTagsState } from '../types/popularTagsState';
+import { PopularTagsState } from '../types/popular-tags-state';
 
 const initialState: PopularTagsState = {
   isLoading: false,
@@ -28,10 +28,5 @@ const popularTagsFeature = createFeature({
   ),
 });
 
-export const {
-  name: popularTagsFeatureKey,
-  reducer: popularTagsReducer,
-  selectIsLoading,
-  selectError,
-  selectData: selectPopularTagsData,
-} = popularTagsFeature;
+export const { name: popularTagsFeatureKey, reducer: popularTagsReducer } =
+  popularTagsFeature;

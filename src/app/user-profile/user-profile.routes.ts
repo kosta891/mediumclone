@@ -5,6 +5,7 @@ import { userProfileFeatureKey, userProfileReducer } from './store/reducers';
 import { provideEffects } from '@ngrx/effects';
 import { UserProfileEffects } from './store/effects';
 import { AuthStateFacade } from '../auth/store/facade';
+import { UserProfileStateFacade } from './store/facade';
 
 export const routes: Route[] = [
   {
@@ -14,6 +15,7 @@ export const routes: Route[] = [
       provideState(userProfileFeatureKey, userProfileReducer),
       provideEffects(UserProfileEffects),
       AuthStateFacade,
+      UserProfileStateFacade,
     ],
   },
 ];

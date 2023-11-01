@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
 import { ReplaySubject, combineLatest } from 'rxjs';
-import { authActions } from '../../store/actions';
 import { RegisterRequest } from '../../types/register-request';
 import { Router } from '@angular/router';
 import { AsyncPipe, NgIf } from '@angular/common';
@@ -23,13 +21,8 @@ import { BackendErrorMessagesComponent } from 'src/app/shared/components/backend
   providers: [AuthStateFacade],
 })
 export class RegisterComponent implements OnDestroy {
-  // isSubmitting$ = this.store.select(selectIsSubmitting);
-  // isSubmitting$: Observable<boolean> = this.authStateFacade.isSubmitting$;
-  // isLoading$: Observable<boolean> = this.authStateFacade.isLoading$;
   // currentUser$: Observable<CurrentUser | null | undefined> =
   //   this.authStateFacade.currentUser$;
-  // backendErrors$: Observable<BackendErrors | null> =
-  //   this.authStateFacade.backendErrors$;
 
   data$ = combineLatest({
     isSubmitting: this.authStateFacade.isSubmitting$,
@@ -56,7 +49,6 @@ export class RegisterComponent implements OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private store: Store,
     private router: Router,
     private authStateFacade: AuthStateFacade
   ) {}
@@ -66,7 +58,8 @@ export class RegisterComponent implements OnDestroy {
     const request: RegisterRequest = {
       user: this.registerForm.getRawValue(),
     };
-    this.store.dispatch(authActions.register({ request }));
+
+    this.authStateFacade.register(request);
   }
 
   onNavigateLink(): void {

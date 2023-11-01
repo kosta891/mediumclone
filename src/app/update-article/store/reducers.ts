@@ -11,7 +11,7 @@ const initialState: UpdateArticleState = {
 };
 
 const updateArticleFeature = createFeature({
-  name: 'update article',
+  name: 'updateArticle',
   reducer: createReducer(
     initialState,
     on(updateArticleActions.getArticle, (state) => ({
@@ -44,11 +44,5 @@ const updateArticleFeature = createFeature({
   ),
 });
 
-export const {
-  name: updateArticleFeatureKey,
-  reducer: updateArticleReducer,
-  selectIsLoading,
-  selectArticle,
-  selectIsSubmitting,
-  selectValidationErrors,
-} = updateArticleFeature;
+export const { name: updateArticleFeatureKey, reducer: updateArticleReducer } =
+  updateArticleFeature;

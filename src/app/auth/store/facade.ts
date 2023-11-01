@@ -8,6 +8,7 @@ import { CurrentUser } from 'src/app/shared/types/current-user';
 import { authActions } from './actions';
 import { LoginRequest } from '../types/login-request';
 import { CurrentUserRequest } from 'src/app/shared/types/current-user-request';
+import { RegisterRequest } from '../types/register-request';
 
 @Injectable()
 export class AuthStateFacade {
@@ -29,6 +30,10 @@ export class AuthStateFacade {
 
   login(request: LoginRequest): void {
     this.store.dispatch(authActions.login({ request }));
+  }
+
+  register(request: RegisterRequest) {
+    this.store.dispatch(authActions.register({ request }));
   }
 
   logout(): void {
