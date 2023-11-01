@@ -2,12 +2,12 @@ import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Observable, catchError, map, of, switchMap, tap } from 'rxjs';
 import { Action } from '@ngrx/store';
-import { ArticleInterface } from 'src/app/shared/types/article';
+import { ArticleInterface } from '@shared/types/article';
 import { Router } from '@angular/router';
 import { UpdateArticleService } from '../services/update-article.service';
 import { updateArticleActions } from './actions';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ArticleService as SharedArticleService } from 'src/app/shared/services/article.service';
+import { ArticleService as SharedArticleService } from '@shared/services/article.service';
 
 @Injectable()
 export class UpdateArticleEffects {

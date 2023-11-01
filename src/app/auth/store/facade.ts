@@ -3,11 +3,11 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as Selectors from './selectors';
 import { AuthState } from '../types/auth-state';
-import { BackendErrors } from 'src/app/shared/types/backendErrors';
-import { CurrentUser } from 'src/app/shared/types/current-user';
+import { BackendErrors } from '@shared/types/backendErrors';
+import { CurrentUser } from '@shared/types/current-user';
 import { authActions } from './actions';
 import { LoginRequest } from '../types/login-request';
-import { CurrentUserRequest } from 'src/app/shared/types/current-user-request';
+import { CurrentUserRequest } from '@shared/types/current-user-request';
 import { RegisterRequest } from '../types/register-request';
 
 @Injectable()

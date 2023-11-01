@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ArticleFormComponent } from 'src/app/shared/components/article-form/article-form.component';
-import { ArticleFormValues } from 'src/app/shared/components/article-form/types/article-form-values';
+import { ArticleFormComponent } from '@shared/components/article-form/article-form.component';
+import { ArticleFormValues } from '@shared/components/article-form/types/article-form-values';
 import { combineLatest } from 'rxjs';
-import { ArticleRequest } from 'src/app/shared/types/article-request';
+import { ArticleRequest } from '@shared/types/article-request';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { CreateArticleStateFacade } from '../../store/facade';
 

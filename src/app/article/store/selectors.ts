@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { ArticleInterface } from 'src/app/shared/types/article';
+import { ArticleInterface } from '@shared/types/article';
 import { ArticleState } from '../types/article-state';
 
 export const selectFeature = (state: { article: ArticleState }) =>

@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { environment } from 'src/app/environment/environment';
-import { ArticleInterface } from 'src/app/shared/types/article';
-import { ArticleRequest } from 'src/app/shared/types/article-request';
-import { ArticleResponse } from 'src/app/shared/types/article-response';
+import { environment } from '@environment/environment';
+import { ArticleInterface } from '@shared/types/article';
+import { ArticleRequest } from '@shared/types/article-request';
+import { ArticleResponse } from '@shared/types/article-response';
 
 @Injectable({
   providedIn: 'root',

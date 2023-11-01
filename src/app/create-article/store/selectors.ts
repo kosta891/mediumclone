@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { BackendErrors } from 'src/app/shared/types/backendErrors';
+import { BackendErrors } from '@shared/types/backendErrors';
 import { CreateArticleState } from '../types/create-article-state';
 
 export const selectFeature = (state: { createArticle: CreateArticleState }) =>

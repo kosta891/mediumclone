@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { UserProfileInterface } from '../types/user-profile.interface';
-import { environment } from 'src/app/environment/environment';
+import { environment } from '@environment/environment';
 import { GetUserProfileResponse } from '../types/get-user-profile-response';
 
 @Injectable({

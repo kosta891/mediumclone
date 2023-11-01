@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as Selectors from './selectors';
 import { ArticleState } from '../types/article-state';
-import { ArticleInterface } from 'src/app/shared/types/article';
+import { ArticleInterface } from '@shared/types/article';
 import { articleActions } from './actions';
 
 @Injectable()

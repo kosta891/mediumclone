@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RegisterRequest } from '../types/register-request';
-import { CurrentUser } from 'src/app/shared/types/current-user';
+import { CurrentUser } from '@shared/types/current-user';
 import { Observable, map } from 'rxjs';
 import { AuthResponse } from '../types/auth-response';
-import { environment } from 'src/app/environment/environment';
+import { environment } from '@environment/environment';
 import { LoginRequest } from '../types/login-request';
-import { CurrentUserRequest } from 'src/app/shared/types/current-user-request';
+import { CurrentUserRequest } from '@shared/types/current-user-request';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
