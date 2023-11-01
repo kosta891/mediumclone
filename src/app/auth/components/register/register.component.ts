@@ -54,7 +54,6 @@ export class RegisterComponent implements OnDestroy {
   ) {}
 
   onSubmit(): void {
-    console.log(this.registerForm.getRawValue());
     const request: RegisterRequest = {
       user: this.registerForm.getRawValue(),
     };
